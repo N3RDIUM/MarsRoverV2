@@ -1,23 +1,17 @@
-from gpiozero import AngularServo, Device
-from gpiozero.pins.native import NativeFactory
-Device.pin_factory = NativeFactory()
+from gpiozero import Servo
 from time import sleep
 
-# Create an AngularServo object with the specified GPIO pin,
-# minimum pulse width, and maximum pulse width
-servo = AngularServo(16, min_pulse_width=0.0006, max_pulse_width=0.0023)
+# For the SG90 servo motor, the pulse width is 1ms to 2ms
+correction = 0.45
+minpulse = (1.0 - correction) / 1000
+maxpulse = (2.0 + correction) / 1000
+servo = Servo(16, min_pulse_width=minpulse, max_pulse_width=maxpulse)
 
 try:
    while True:
-       # Set the servo angle to 90 degrees
-       servo.angle = 90
-       sleep(1)  # Delay for 1 second
-       # Set the servo angle to 0 degrees
-       servo.angle = 0
-       sleep(1)  # Delay for 1 second
-       # Set the servo angle to -90 degrees
-       servo.angle = -90
-       sleep(1)  # Delay for 1 second
+       servo.value = 0
+       sleep(1)
+       servo.value = 1
+       sleep(1)
 finally:
-   # Set the servo angle to 0 degrees before exiting
-   servo.angle = 0
+   servo.value = 0
