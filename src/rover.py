@@ -1,19 +1,16 @@
-from gpiozero import Servo
+import pigpio
 from time import sleep
 
-# For the SG90 servo motor, the pulse width is 1ms to 2ms
-correction = 0.45
-minpulse = (1.0 - correction) / 1000
-maxpulse = (2.0 + correction) / 1000
-servo = Servo(16, min_pulse_width=minpulse, max_pulse_width=maxpulse)
+# connect to the
+pi = pigpio.pi()
 
-try:
-   while True:
-       servo.value = -1
-       sleep(1)
-       servo.value = 0
-       sleep(1)
-       servo.value = 1
-       sleep(1)
-finally:
-   servo.value = 0
+# loop forever
+while True:
+    pi.set_servo_pulsewidth(18, 0)    # off
+    sleep(1)
+    pi.set_servo_pulsewidth(18, 1000) # position anti-clockwise
+    sleep(1)
+    pi.set_servo_pulsewidth(18, 1500) # middle
+    sleep(1)
+    pi.set_servo_pulsewidth(18, 2000) # position clockwise
+    sleep(1)
