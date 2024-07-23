@@ -1,16 +1,11 @@
-# use this custom pin-factory to fix servo jitter.
-# IMPORTANT: make sure pigpio deamon is running: 'sudo pigpiod'
-from gpiozero.pins.pigpio import PiGPIOFactory
-
 from gpiozero import Servo
 from time import sleep
 
-# create a custom pin-factory to fix servo jitter
-# more info here: https://gpiozero.readthedocs.io/en/stable/api_output.html#servo
-# and here: https://gpiozero.readthedocs.io/en/stable/api_pins.html
-pigpio_factory = PiGPIOFactory()
+correction = 0.45
+minpulse = (1.0 - correction) / 1000
+maxpulse = (2.0 + correction) / 1000
+servo = Servo(16, min_pulse_width=minpulse, max_pulse_width=maxpulse)
 
-servo = Servo(22, pin_factory=pigpio_factory)
 servo.mid()
 print("servo mid")
 sleep(3)
