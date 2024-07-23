@@ -9,6 +9,8 @@ servo = Servo(16, min_pulse_width=minpulse, max_pulse_width=maxpulse)
 
 try:
    while True:
+       servo.value = -1
+       sleep(1)
        servo.value = 0
        sleep(1)
        servo.value = 1
