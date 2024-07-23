@@ -3,7 +3,7 @@ from time import sleep
 
 # Create an AngularServo object with the specified GPIO pin,
 # minimum pulse width, and maximum pulse width
-servo = AngularServo(18, min_pulse_width=0.0006, max_pulse_width=0.0023)
+servo = AngularServo(16, min_pulse_width=0.0006, max_pulse_width=0.0023)
 
 try:
    while True:
