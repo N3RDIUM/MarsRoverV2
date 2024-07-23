@@ -1,30 +1,21 @@
-import RPi.GPIO as GPIO
-import time
+from gpiozero import AngularServo
+from time import sleep
 
-servoPIN = 17
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(servoPIN, GPIO.OUT)
+# Create an AngularServo object with the specified GPIO pin,
+# minimum pulse width, and maximum pulse width
+servo = AngularServo(18, min_pulse_width=0.0006, max_pulse_width=0.0023)
 
-p = GPIO.PWM(servoPIN, 50) # GPIO 17 for PWM with 50Hz
-p.start(2.5) # Initialization
 try:
-  while True:
-    p.ChangeDutyCycle(5)
-    time.sleep(0.5)
-    p.ChangeDutyCycle(7.5)
-    time.sleep(0.5)
-    p.ChangeDutyCycle(10)
-    time.sleep(0.5)
-    p.ChangeDutyCycle(12.5)
-    time.sleep(0.5)
-    p.ChangeDutyCycle(10)
-    time.sleep(0.5)
-    p.ChangeDutyCycle(7.5)
-    time.sleep(0.5)
-    p.ChangeDutyCycle(5)
-    time.sleep(0.5)
-    p.ChangeDutyCycle(2.5)
-    time.sleep(0.5)
-except KeyboardInterrupt:
-  p.stop()
-  GPIO.cleanup()
+   while True:
+       # Set the servo angle to 90 degrees
+       servo.angle = 90
+       sleep(1)  # Delay for 1 second
+       # Set the servo angle to 0 degrees
+       servo.angle = 0
+       sleep(1)  # Delay for 1 second
+       # Set the servo angle to -90 degrees
+       servo.angle = -90
+       sleep(1)  # Delay for 1 second
+finally:
+   # Set the servo angle to 0 degrees before exiting
+   servo.angle = 0
