@@ -5,7 +5,7 @@ from time import sleep
 correction = 0.45
 minpulse = (1.0 - correction) / 1000
 maxpulse = (2.0 + correction) / 1000
-servo = Servo(16, min_pulse_width=minpulse, max_pulse_width=maxpulse, pin_factory=factory)
+servo = Servo(16, min_pulse_width=minpulse, max_pulse_width=maxpulse)
 
 try:
    while True:
