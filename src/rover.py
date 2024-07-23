@@ -1,11 +1,11 @@
-from gpiozero import AngularServo
-from gpiozero.pins.pigpio import PiGPIOFactory
-factory = PiGPIOFactory()
+from gpiozero import Device, AngularServo
+from gpiozero.pins.native import NativeFactory
+Device.pin_factory = NativeFactory()
 from time import sleep
 
 # Create an AngularServo object with the specified GPIO pin,
 # minimum pulse width, and maximum pulse width
-servo = AngularServo(16, min_pulse_width=0.0006, max_pulse_width=0.0023, factory=factory)
+servo = AngularServo(16, min_pulse_width=0.0006, max_pulse_width=0.0023)
 
 try:
    while True:
