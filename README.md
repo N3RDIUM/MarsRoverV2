@@ -5,7 +5,7 @@ Code for my second Mars Rover project for the annual science fair at my school (
 1. A desktop/laptop (Linux*)
 2. A Raspberry Pi (preferably a 5*)
 
-#### *No, I'm not biased towards these things. The code has only been tested on the platforms I recommend, which is why I recommend users to use them. If you're cool with tweaking and troubleshooting, please do try this on other platforms and contribute!
+##### *No, I'm not biased towards these things. The code has only been tested on the platforms I recommend, which is why I recommend users to use them. If you're cool with tweaking and troubleshooting, please do try this on other platforms and contribute!
 
 ## How to run
 Make TWO clones of this repository. One on your laptop/desktop (how else are you going to control it?) and one on your Raspberry Pi.
